@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0"
   },
   "scripts": {
     "dev": "nodemon ./src/server.js"
@@ -17,6 +20,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4",
+    "sequelize-cli": "^6.6.0",
     "sucrase": "3.10.1"
   }
 }
