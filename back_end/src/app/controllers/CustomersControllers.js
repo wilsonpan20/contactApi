@@ -1,7 +1,7 @@
-let customers = [
+const customers = [
   { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
   { id: 2, name: "Google", site: "http://google.com" },
-  { id: 3, name: "UOL", site: "http://uol.com.br" }
+  { id: 3, name: "UOL", site: "http://uol.com.br" },
 ];
 
 class CustomersController {
@@ -12,11 +12,9 @@ class CustomersController {
 
   // Recupera um Customer
   show(req, res) {
-    const id = parseInt(req.params.id);
-    const customer = customers.find(item => item.id === id);
+    const id = parseInt(req.params.id, 10);
+    const customer = customers.find((item) => item.id === id);
     const status = customer ? 200 : 404;
-
-    console.debug("GET :: /customers/:id ", customer);
 
     return res.status(status).json(customer);
   }
@@ -34,14 +32,14 @@ class CustomersController {
 
   // Atualiza um Customer
   update(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id, 10);
     const { name, site } = req.body;
 
-    const index = customers.findIndex(item => item.id === id);
+    const index = customers.findIndex((item) => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
     if (index >= 0) {
-      customers[index] = { id: parseInt(id), name, site };
+      customers[index] = { id: parseInt(id, 10), name, site };
     }
 
     return res.status(status).json(customers[index]);
@@ -49,8 +47,8 @@ class CustomersController {
 
   // Exclui um Customer
   destroy(req, res) {
-    const id = parseInt(req.params.id);
-    const index = customers.findIndex(item => item.id === id);
+    const id = parseInt(req.params.id, 10);
+    const index = customers.findIndex((item) => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
     if (index >= 0) {
