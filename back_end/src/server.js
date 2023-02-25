@@ -1,5 +1,3 @@
 import app from "./app";
 
-app.listen(3005, () => {
-  console.log("servido rodando na porta 3005");
-});
+app.listen(3000, () => console.log("server running on port 3000"));

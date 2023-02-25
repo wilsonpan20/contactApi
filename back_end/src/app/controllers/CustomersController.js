@@ -1,3 +1,5 @@
+import Customer from "../models/Customer";
+
 const customers = [
   { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
   { id: 2, name: "Google", site: "http://google.com" },
@@ -6,15 +8,21 @@ const customers = [
 
 class CustomersController {
   // Listagem dos Customers
-  index(req, res) {
-    return res.json(customers);
+  async index(req, res) {
+    const data = await Customer.findAll({
+      limit: 1000,
+    });
+
+    return res.json(data);
   }
 
   // Recupera um Customer
   show(req, res) {
     const id = parseInt(req.params.id, 10);
-    const customer = customers.find((item) => item.id === id);
+    const customer = customers.find(item => item.id === id);
     const status = customer ? 200 : 404;
+
+    console.log("GET :: /customers/:id ", customer);
 
     return res.status(status).json(customer);
   }
@@ -35,7 +43,7 @@ class CustomersController {
     const id = parseInt(req.params.id, 10);
     const { name, site } = req.body;
 
-    const index = customers.findIndex((item) => item.id === id);
+    const index = customers.findIndex(item => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
     if (index >= 0) {
@@ -48,7 +56,7 @@ class CustomersController {
   // Exclui um Customer
   destroy(req, res) {
     const id = parseInt(req.params.id, 10);
-    const index = customers.findIndex((item) => item.id === id);
+    const index = customers.findIndex(item => item.id === id);
     const status = index >= 0 ? 200 : 404;
 
     if (index >= 0) {

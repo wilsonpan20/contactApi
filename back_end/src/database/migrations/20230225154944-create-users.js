@@ -1,6 +1,5 @@
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
@@ -23,6 +22,7 @@ module.exports = {
       },
       provider: {
         type: Sequelize.BOOLEAN,
+        default: false,
         allowNull: false,
       },
       created_at: {
@@ -36,7 +36,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface) {
+  down: queryInterface => {
     return queryInterface.dropTable("users");
   },
 };
