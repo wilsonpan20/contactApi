@@ -13,7 +13,7 @@ class CustomersController {
       limit: 1000,
     });
 
-    return res.json(data);
+    return res.status(200).json(data);
   }
 
   // Recupera um Customer
